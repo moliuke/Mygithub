@@ -1,0 +1,4 @@
+
+all:
+	gcc syslog.c -o syslog -D DMP -m32 -march=i486
+	cp syslog /nfs/linuxVersion

@@ -1,0 +1,3 @@
+1、(串口RTU模式)当上位机发布的设备地址与下位机地址不符时会段错误
+
+2、当发布的内容中不含有文字信息时，frame_task在调用LEDVersion.DSPContentEntry会产生段错误

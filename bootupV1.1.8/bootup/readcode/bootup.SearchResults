@@ -1,0 +1,5 @@
+---- check_APPonline Matches (4 in 3 files) ----
+appOnline.c:int check_APPonline(int get_pid_name(char *app_name))
+appOnline.h:int check_APPonline(int get_pid_name(char *app_name));
+Main.c:	if(check_APPonline(get_pid_name) == 0)
+Main.c:		if(check_APPonline(get_pid_name) < 0)

@@ -1,0 +1,119 @@
+CC=$(CROSS_COMPILE)gcc
+
+FLAGS = -Wall -g -g3 -O0
+#FLAGS += -std=c99
+
+TAR = ledscreen
+
+all += main.o
+all += module/bitmap.o
+all += protocol/PTC_common.o
+#all += LEDversion.o
+
+
+
+all += protocol/seewor/SWR_protocol.o
+all += protocol/seewor/SWR_display.o
+all += protocol/seewor/SWR_custom.o
+all += protocol/seewor/SWR_charparse.o
+all += protocol/seewor/SWR_net.o
+#all += protocol/seewor/ZhuHaiProj/ZhuHai.o
+#all += protocol/seewor/ZhiChao/ZC_protocol.o
+
+ 
+#all += protocol/perplelight/PPL_protocol.o
+#all += protocol/perplelight/PPL_Lstparse.o
+#all += protocol/perplelight/PPL_datapool.o
+#all += protocol/perplelight/PPL_display.o
+#all += protocol/perplelight/PPL_net.o
+
+#all += protocol/Modbus/modbus_protocol.o 
+#all += protocol/Modbus/modbus_task.o
+#all += protocol/Modbus/modbus_charparse.o
+#all += protocol/Modbus/modbus_display.o
+#all += protocol/Modbus/modbus_config.o
+#all += protocol/Modbus/modbus_lightband.o
+#all += protocol/Modbus/modbus_net.o
+
+#all += module/aes/aes.o
+#all += module/aes/aesni.o
+#all += module/aes/platform.o
+#all += module/aes/platform_util.o
+#all += module/aes/aes_interf.o
+
+#all += module/PNG/img_png.o
+
+#all += protocol/ChengDu/CD_net.o
+#all += protocol/ChengDu/CD_timer.o
+#all += protocol/ChengDu/CD_protocol.o
+#all += protocol/ChengDu/CD_charparse.o
+#all += protocol/ChengDu/CD_display.o
+#all += protocol/ChengDu/CD_init.o
+
+#all += protocol/ZhiChao/ZC_task.o
+#all += protocol/ZhiChao/ZC_protocol.o
+#all += protocol/ZhiChao/ZC_Lstparse.o
+#all += protocol/ZhiChao/ZC_display.o
+#all += protocol/ZhiChao/ZC_net.o
+
+all += Hardware/Data_pool.o
+all += Hardware/HW2G_400.o
+all += Hardware/HW1G_200.o
+all += Hardware/HW3G_RXTX.o
+
+all += task/Frame_task.o
+all += task/Net_task.o
+all += task/Uart_UpdateTask.o 
+all += task/Protocol_task.o
+all += task/Display_task.o
+all += task/Uart_Task.o
+
+
+all += protocol/PTC_FileRxTx.o
+all += protocol/PTC_FileCopy.o
+all += module/character.o
+all += module/mtime.o
+all += module/queue.o
+all += module/content.o
+all += module/utf8conver.o
+#all += module/file_trmit.o
+all += module/image_gif.o
+all += device/Dev_tcpserver.o
+all += device/Dev_serial.o
+#all += device/wdt.o
+all += device/Dev_framebuffer.o
+#all += config/config_file.o
+#all += config/sysconfig.o
+all += config/conf.o
+all += task/task.o
+all += display.o
+all += log.o
+all += Defmsg.o
+all += debug.o
+all += clientlist.o
+#aa += mylist.o
+all += threadpool.o
+all += mtimer.o
+all += module/fuser.o
+all += cache.o
+all += common.o
+
+
+#LDFLAGS += -lpthread -lgif
+LDFLAGS += -L /opt/openlib/giflib/giflib-5.1.4_DMP/mygiflib/lib -L /opt/openlib/pnglib/install/lib/
+LIBS += -lpthread -lgif -lpng
+
+CFLAGS = -fno-stack-protector -I ./include -I /opt/openlib/pnglib/install/include/ -D DMP
+export CC
+$(TAR): $(all)
+	$(CC) $(CFLAGS) -o $(TAR) $(all) -m32 -march=i486 $(LDFLAGS) $(LIBS)
+	cp $(TAR) /nfs/linuxVersion/
+	$(RM) -f *.gch *.bak $(all) 
+	
+%.o:%.c
+	$(CC) $(CFLAGS) -c -o $@ $< -m32 -march=i486
+
+.PHONY: clean
+clean:
+	rm -rf $(TAR) $(all) 
+

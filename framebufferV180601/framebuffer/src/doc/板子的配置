@@ -1,0 +1,28 @@
+1、串口登录问题
+我们SDK包已经将ssh编译进去了，但是从串口端可以登录就是ssh不能登录，打开/etc/ssh/sshd_config
+找到#LoginGraceTime 2m，在下面增加下面的两行:
+PermitRootLogin yes
+PermitEmptyPasswords yes
+
+
+
+2、板子启动后自动登录自动启动应用程序
+在源码目录下执行make menuconfig
+(1)---->System Configration---->Init System(busybox)--->busybox
+(2)---->System Configration--->Run a getty(login prompt) after boot--->tty port修改成tty0
+(3)编写一个自动登录脚本文件autologin，文件的内容如下:
+#!/bin/sh
+/bin/login -f root
+把autologin拷贝到/root/目录下
+(4)打开/etc/inittab文件，找到如下这行
+tty0::respawn:/sbin/getty -L  tty0 0 vt100 # GENERIC_SERIAL
+把它改成
+tty0::respawn:/root/autologin -L  tty0 0 vt100 # GENERIC_SERIAL
+(5)打开/etc/profile,在最后增加下面两行，最后一行是我们的应用程序
+cd /root/LEDscr/
+./ledscreen
+
+
+
+
+

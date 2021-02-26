@@ -1,0 +1,83 @@
+@media screen and (min-width:1000px){
+#nav {
+height: 600px;
+width: 150px;
+float: left;
+}
+#section {
+float: left;
+}
+}
+@media screen and (max-width:1000px){
+#nav {
+height: 64px;
+width: 100%;
+float: top;
+}
+#section {
+float: top;
+}
+}
+a {
+text-decoration: none;
+color: darkslateblue;
+background-color: #eeeeee;
+display: block;
+width: 150px;
+padding: 20px 0 20px 0px;
+float:left;
+}
+a:hover {
+text-decoration: none;
+color: #eeeeee;
+background-color: darkslateblue;
+}
+input{
+outline: medium;
+border-width: 1px;
+border-radius: 6px;
+}
+input[type="range"] {
+-webkit-appearance: none;
+background-color: #ebeff4;
+height: 4px;
+}
+select {
+border-radius: 4px;
+overflow: hidden;
+}
+button {
+background-color: teal;
+color: white;
+border-radius: 4px;
+padding: 2px 15px 2px 15px;
+}
+button:hover {
+color:darkgray;
+}
+#header {
+background-color: #105a9b;
+color: white;
+text-align: center;
+padding: 5px;
+}
+#nav {
+background-color: #eeeeee;
+text-align: center;
+}
+#section {
+padding: 10px;
+}
+#footer {
+color: lightslategray;
+clear: both;
+text-align: center;
+padding: 5px;
+}
+#myborder{
+border: none;
+float: left;
+border-radius: 5mm;
+padding: 0px 20px 10px 20px;
+margin: 10px;
+}

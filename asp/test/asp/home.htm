@@ -1,0 +1,37 @@
+<html>
+<!- Copyright (c) Go Ahead Software Inc., 2000-2010. All Rights Reserved. ->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Log</title>
+<script>
+   function check(){
+      var name=document.getElementById("name").value;
+   var pass=document.getElementById("pass").value;
+   if(name=="admin" && pass=="admin"){
+   alert("登入成功");
+   window.location.href="select.htm";
+ 
+   }else{
+   alert("用户名或密码错误");   
+   }
+   
+   }
+</script>
+</head>
+
+<body>
+<tr>
+<td>
+	
+	<H3> 用户登录 </H3>
+	<form name="details" method="post" action="/goform/formLogin">
+	用户名:<INPUT TYPE="text" NAME="" id="name" size="16" maxlength="64"><br><br>
+	密码:<INPUT TYPE="password" NAME="" id="pass" size="16" maxlength="64"><br><br>
+	<INPUT TYPE="button" value="登入" onclick="check()">
+	<INPUT TYPE="reset" value="重置">
+	</form>
+
+</tr>
+</td>
+</body>
+</html>

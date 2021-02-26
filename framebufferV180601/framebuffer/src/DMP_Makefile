@@ -1,0 +1,69 @@
+CC=$(CROSS_COMPILE)gcc
+
+FLAGS = -Wall -g -g3 -O0
+#FLAGS += -std=c99
+
+TAR = ledscreen
+
+all += main.o
+all += module/bitmap.o
+all += protocol/PTCcommon.o
+#all += LEDversion.o
+
+all += protocol/seewor/SWRprotocol.o
+all += protocol/seewor/SWR_privateInterf.o
+all += protocol/seewor/ZhuHaiProj/ZhuHai.o
+all += protocol/seewor/PC104HW/PC104HW.o
+ 
+all += protocol/perplelight/PPLprotocol.o
+all += protocol/perplelight/Lst_parse.o
+all += protocol/perplelight/PPL_datapool.o
+all += protocol/perplelight/PPL_privateInterf.o
+
+all += protocol/FileRxTx.o
+all += protocol/FileCopy.o
+all += module/character.o
+all += module/mtime.o
+all += module/queue.o
+all += module/content.o
+all += module/utf8conver.o
+#all += module/file_trmit.o
+all += module/image_gif.o
+all += device/tcpserver.o
+all += device/serial.o
+all += device/device.o
+#all += device/wdt.o
+all += device/framebuffer.o
+all += config/config_file.o
+all += config/sysconfig.o
+all += config/conf.o
+all += task.o
+all += display.o
+all += log.o
+all += debug.o
+all += clientlist.o
+#aa += mylist.o
+all += threadpool.o
+all += mtimer.o
+all += module/fuser.o
+all += cache.o
+
+#LDFLAGS += -lpthread -lgif
+LDFLAGS += -L /opt/openlib/giflib/giflib-5.1.4_DMP/mygiflib/lib
+LIBS += -lpthread -lgif
+
+CFLAGS = -fno-stack-protector -I ./include -D DMP
+export CC
+$(TAR): $(all)
+	$(CC) $(CFLAGS) -o $(TAR) $(all) -m32 -march=i486 $(LDFLAGS) $(LIBS)
+	cp $(TAR) /nfs/linuxVersion/
+	cp $(TAR) /home/seewor/linux_QT/cqa64_linuxqt_bv3/buildroot-2017.02.3/output/target/root/LEDscr/
+	cp $(TAR) /home/seewor/linux_QT/cqa64_linuxqt_bv3/buildroot-2017.02.3/output/target/bin/
+	$(RM) -f *.gch *.bak $(all) 
+	
+%.o:%.c
+	$(CC) $(CFLAGS) -c -o $@ $< -m32 -march=i486
+
+.PHONY: clean
+clean:
+	rm -rf $(TAR) $(all) 

@@ -1,0 +1,8 @@
+[2019/01/11 15:37:42][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:37:45][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:37:45][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:37:46][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:37:47][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:37:48][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:37:48][ERROR][syslog.c][LogErrorMsg][28] This function is break out
+[2019/01/11 15:43:05][ERROR][syslog.c][func:LogErrorMsg][line:28] info:This function is break out
